@@ -2,12 +2,19 @@
 
 namespace App\Entity;
 
-use App\Repository\JobRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\JobRepository;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * @ORM\Entity(repositoryClass=JobRepository::class)
  * @ORM\Table(name="jobs")
+ * @ApiResource()
+ * @ApiFilter(DateFilter::class,properties={"date_published"})
+ * @ApiFilter(SearchFilter::class, properties={"job","compagny.compagny"})
  */
 class Job
 {
