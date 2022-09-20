@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=JobRepository::class)
+ * @ORM\Table(name="jobs")
  */
 class Job
 {
@@ -33,7 +34,7 @@ class Job
     private $link;
 
     /**
-     * @ORM\Column(type="string", columnDefinition="CHAR(2) NULL")
+     * @ORM\Column(type="string", length=32, nullable=true)
      */
     private $refkey;
 
