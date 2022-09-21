@@ -6,15 +6,20 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\JobRepository;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * @ORM\Entity(repositoryClass=JobRepository::class)
  * @ORM\Table(name="jobs")
- * @ApiResource()
+ * @ApiResource(
+ *      normalizationContext={
+ *          "groups"={"job_read"}
+ *      },
+ * )
  * @ApiFilter(DateFilter::class,properties={"date_published"})
- * @ApiFilter(SearchFilter::class, properties={"job","compagny.compagny"})
+ * @ApiFilter(SearchFilter::class, properties={"job","compagny.compagny","division.division","role.role","profession.profession"})
  */
 class Job
 {
@@ -27,16 +32,19 @@ class Job
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"job_read"})
      */
     private $job;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"job_read"})
      */
     private $job_ref;
 
     /**
      * @ORM\Column(type="string", length=2000)
+     * @Groups({"job_read"})
      */
     private $link;
 
@@ -47,30 +55,35 @@ class Job
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Groups({"job_read"})
      */
     private $date_published;
 
     /**
      * @ORM\ManyToOne(targetEntity=Compagny::class, inversedBy="jobs")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"job_read"})
      */
     private $compagny;
 
     /**
      * @ORM\ManyToOne(targetEntity=Profession::class, inversedBy="jobs")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"job_read"})
      */
     private $profession;
 
     /**
      * @ORM\ManyToOne(targetEntity=Division::class, inversedBy="jobs")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"job_read"})
      */
     private $division;
 
     /**
      * @ORM\ManyToOne(targetEntity=Role::class, inversedBy="jobs")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"job_read"})
      */
     private $role;
 

@@ -7,6 +7,7 @@ use App\Repository\ProfessionRepository;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ProfessionRepository::class)
@@ -24,6 +25,7 @@ class Profession
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"job_read"})
      */
     private $profession;
 

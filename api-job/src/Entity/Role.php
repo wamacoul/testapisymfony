@@ -7,11 +7,17 @@ use App\Repository\RoleRepository;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=RoleRepository::class)
  * @ORM\Table(name= "roles")
- * @ApiResource()
+ * @ApiResource(
+ *      normalizationContext={
+ *          "groups"="role_read"
+ *      }, 
+ *      denormalizationContext={"disable_type_enforcement"=true}
+ * )
  */
 class Role
 {
@@ -24,6 +30,7 @@ class Role
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"role_read","job_read"})
      */
     private $role;
 

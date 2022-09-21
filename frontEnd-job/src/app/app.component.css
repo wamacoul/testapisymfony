@@ -1,0 +1,9 @@
+
+.c-link{
+  display: flex;
+  justify-content: space-between;
+}
+.link{
+  font-size: 18px;
+  margin-right: 2em;
+}
