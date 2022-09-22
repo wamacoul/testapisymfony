@@ -12,6 +12,8 @@ export class JobsPageComponent implements OnInit {
 
   param:any;
 
+  searchText:any;
+
   constructor(private jobsService:JobsServicesService) { }
 
   ngOnInit(): void {

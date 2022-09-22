@@ -1,0 +1,30 @@
+<h4 class="text-center">Create New User</h4>
+<br>
+<div class="w-75 m-auto">
+  <div *ngIf="loading" class="text-center">loading...</div>
+  <div *ngIf="errorMessage" class="alert alert-warning text-center">
+    <strong>Warning!</strong>{{errorMessage | json}}
+  </div>
+  <div *ngIf="successMessage" class="alert alert-success text-center">
+    {{successMessage}}
+  </div>
+    <form class="d-flex justify-content-center forms" #dateSet = "ngForm" (ngSubmit)="onClickSubmit(dateSet.value)">
+      <div>
+        <span class="row mb-5">
+          <label for="nameId"> name : </label>
+          <input class="ml-2" type="text" placeholder="enter your name" name="name" id="nameId"  ngModel>
+        </span>
+        <span class="row mb-5">
+          <label for="emailId"> email : </label>
+          <input class="ml-2" type="email" placeholder="enter your email" name="email" id="emailId" required ngModel>
+        </span>
+        <span class="row mb-5">
+          <label for="passwordId"> password : </label>
+          <input class="ml-2" type="password" placeholder="enter your password" name="password" id="passwordId" required ngModel>
+        </span>
+        <span class="row">
+          <input type="submit" value="create">
+        </span>
+      </div>
+    </form>
+</div>

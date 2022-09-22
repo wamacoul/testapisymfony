@@ -36,7 +36,16 @@
   </span>
 </div>
 <br>
-<br>
+<div class="w-75 bg-dark m-auto mb-0">
+  <input
+    class="py-1 w-100"
+    type="text"
+    placeholder="search by jobs or compagnies professions divisions or roles"
+    name="search"
+    id=""
+    [(ngModel)]="searchText"
+  >
+</div>
 <div class="w-75 m-auto">
   <table class="table table-striped">
     <thead class="thead-dark">
@@ -51,7 +60,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of jobsdata; let i = index">
+      <tr *ngFor="let item of jobsdata | filter:searchText; let i = index">
         <th scope="row">{{i+1}}</th>
         <td>{{item.job}}</td>
         <td>{{item.compagny.compagny}}</td>
